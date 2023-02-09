@@ -2,7 +2,7 @@ import { Actor } from 'apify';
 import { PlaywrightCrawler, playwrightUtils, sleep } from 'crawlee';
 import { firefox } from 'playwright';
 
-const WAIT_FOR_SELECTOR = '.result-block'
+const WAIT_FOR_SELECTOR = '.rev-flex'
 const WAIT_FOR_SELECTOR_TIMEOUT = 10000;
 
 await Actor.init({ token: 'apify_api_iSOpghDj1vdlKdoATdB2OQVCWm0fXy2J0xPq' });
@@ -33,7 +33,7 @@ const crawler = new PlaywrightCrawler({
 });
 
 await crawler.run([
-    { url: 'https://nuwber.com/search?name=John%20Snow' }
+    { url: 'https://allpeople.com/search?ss=Tawanna+Brooks&where-auto=&where=Atlanta+GA' }
 ]);
 
 await Actor.exit();
