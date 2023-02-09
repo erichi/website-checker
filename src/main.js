@@ -2,10 +2,10 @@ import { Actor } from 'apify';
 import { PlaywrightCrawler, playwrightUtils, sleep } from 'crawlee';
 import { firefox } from 'playwright';
 
-const WAIT_FOR_SELECTOR = '.rev-flex'
+const WAIT_FOR_SELECTOR = 'h1'
 const WAIT_FOR_SELECTOR_TIMEOUT = 10000;
 
-await Actor.init({ token: 'apify_api_iSOpghDj1vdlKdoATdB2OQVCWm0fXy2J0xPq' });
+await Actor.init({ token: process.env.APIFY_API_KEY });
 
 const proxyConfiguration = await Actor.createProxyConfiguration({
     groups: ['RESIDENTIAL'],
@@ -25,7 +25,7 @@ const crawler = new PlaywrightCrawler({
     proxyConfiguration,
     async requestHandler({ log, request, page, proxyInfo, id }) {
         console.log(proxyInfo)
-        await sleep(10000)
+        await sleep(20000)
         const url = new URL(request.url);
         await playwrightUtils.saveSnapshot(page, { key: `snap-${url.hostname}` })
         await page.waitForSelector(WAIT_FOR_SELECTOR, { timeout: WAIT_FOR_SELECTOR_TIMEOUT })
@@ -33,7 +33,7 @@ const crawler = new PlaywrightCrawler({
 });
 
 await crawler.run([
-    { url: 'https://allpeople.com/search?ss=Tawanna+Brooks&where-auto=&where=Atlanta+GA' }
+    { url: 'https://www.familytreenow.com/search/genealogy/results?first=John&last=Smith&citystatezip=Odessa,%20TX#google_vignette' }
 ]);
 
 await Actor.exit();
