@@ -2,7 +2,7 @@ import { Actor } from 'apify';
 import { PlaywrightCrawler, playwrightUtils, sleep } from 'crawlee';
 import { firefox } from 'playwright';
 
-const WAIT_FOR_SELECTOR = 'h1'
+const WAIT_FOR_SELECTOR = '.fa-remove'
 const WAIT_FOR_SELECTOR_TIMEOUT = 10000;
 
 await Actor.init({ token: process.env.APIFY_API_KEY });
@@ -33,7 +33,7 @@ const crawler = new PlaywrightCrawler({
 });
 
 await crawler.run([
-    { url: 'https://www.familytreenow.com/search/genealogy/results?first=John&last=Smith&citystatezip=Odessa,%20TX#google_vignette' }
+    { url: 'https://www.idealista.com/inmueble/92079743' }
 ]);
 
 await Actor.exit();
